@@ -1,0 +1,13 @@
+image:
+  file: .gitpod.Dockerfile
+ports:
+  - port: 8001
+    onOpen: open-preview
+  - port: 3306
+    onOpen: ignore
+tasks:
+  - init: >
+      mkdir -p /workspace/gitpod-eccube-dev/public &&
+      cd /workspace/gitpod-eccube-dev/public
+    command: apachectl start
+  - command: gp await-port 8001 && gp preview $(gp url 8001)
